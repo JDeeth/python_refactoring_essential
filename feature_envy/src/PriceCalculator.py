@@ -11,12 +11,14 @@ class Product:
     def is_on_sale(self) -> bool:
         return self.on_sale
 
+    def final_price(self) -> float:
+        price = self.get_price()
 
-class PriceCalculator:
-    def calculate_final_price(self, product: Product) -> float:
-        price = product.get_price()
-
-        if product.is_on_sale():
+        if self.is_on_sale():
             price *= 0.8
 
         return price
+
+class PriceCalculator:
+    def calculate_final_price(self, product: Product) -> float:
+        return product.final_price()
