@@ -2,19 +2,13 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Product:
-    price: float
-    on_sale: bool
-
-    def get_price(self) -> float:
-        return self.price
-
-    def is_on_sale(self) -> bool:
-        return self.on_sale
+    _price: float
+    _on_sale: bool
 
     def final_price(self) -> float:
-        price = self.get_price()
+        price = self._price
 
-        if self.is_on_sale():
+        if self._on_sale:
             price *= 0.8
 
         return price
