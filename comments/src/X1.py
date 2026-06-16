@@ -1,18 +1,16 @@
 class X1:
 
     @staticmethod
-    def m(q, z):
-        p = 0
+    def sum_squares_of_range(q, z):
+        accumulated_sum = 0
 
         # Iterate from lower bound (q) to upper bound (z)
         for i in range(q, z + 1):
             # Add square of each number in the range
-            p += X1.square(i)
+            accumulated_sum += X1.square(i)
 
-        # Return accumulated sum
-        return p
+        return accumulated_sum
 
     @staticmethod
     def square(k):
-        # Return square of input
         return k * k
