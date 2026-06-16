@@ -30,11 +30,7 @@ class Order:
         self.customer = customer
 
     def summarise(self) -> OrderSummary:
-        # Validation
-        if self.items is None:
-            raise ValueError("Items cannot be None")
-        if len(self.items) == 0:
-            raise ValueError("Order must contain items")
+        self.validateItems()
 
         # Subtotal calculation
         subtotal = sum(item.price * item.quantity for item in self.items)
@@ -54,3 +50,10 @@ class Order:
         total = taxable_amount + tax
 
         return OrderSummary(subtotal, discount, tax, total)
+
+    def validateItems(self):
+        # Validation
+        if self.items is None:
+            raise ValueError("Items cannot be None")
+        if len(self.items) == 0:
+            raise ValueError("Order must contain items")
