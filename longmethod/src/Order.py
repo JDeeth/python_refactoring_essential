@@ -32,7 +32,6 @@ class Order:
     def summarise(self) -> OrderSummary:
         self.validateItems()
 
-        # Subtotal calculation
         subtotal = self.calculateSubtotal()
 
         discount = self.calculateDiscount(subtotal)
@@ -45,7 +44,6 @@ class Order:
         return OrderSummary(subtotal, discount, tax, total)
 
     def validateItems(self):
-        # Validation
         if self.items is None:
             raise ValueError("Items cannot be None")
         if len(self.items) == 0:
@@ -55,7 +53,6 @@ class Order:
         return sum(item.price * item.quantity for item in self.items)
 
     def calculateDiscount(self, subtotal: float):
-        # Discount rules
         discount = 0.0
         if self.customer.is_loyal():
             discount = subtotal * 0.10
