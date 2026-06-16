@@ -21,9 +21,21 @@ class MockRequester(Requester):
                 return json.loads(
                     """{"orderId":1003,"shippingType":"OVERNIGHT","weightKg":2,"distanceKm":50,"fragile":false}"""
                 )
+            case 1004:
+                return json.loads(
+                    """{"orderId":1004,"shippingType":"INTERNATIONAL","weightKg":10,"distanceKm":50,"fragile":false}"""
+                )
 
 
-@pytest.mark.parametrize("order_id,expected", [(1001, 2.5), (1002, 36.8), (1003, 27.4)])
+@pytest.mark.parametrize(
+    "order_id,expected",
+    [
+        (1001, 2.5),
+        (1002, 36.8),
+        (1003, 27.4),
+        pytest.param(1004, 15, marks=pytest.mark.xfail(reason="Not implemented yet")),
+    ],
+)
 def test_calculate_shipping(order_id, expected):
     calc = ShippingCalculator(MockRequester())
 
