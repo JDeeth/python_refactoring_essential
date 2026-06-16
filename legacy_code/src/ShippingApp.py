@@ -2,6 +2,7 @@ import sys
 
 from legacy_code.src.ShippingCalculator import ShippingCalculator
 
+from legacy_code.src.JasonRequester import JasonRequester
 
 class ShippingApp:
     @staticmethod
@@ -13,7 +14,8 @@ class ShippingApp:
         try:
             order_id = int(sys.argv[1])
 
-            calculator = ShippingCalculator()
+            jason_requester = JasonRequester()
+            calculator = ShippingCalculator(jason_requester)
             cost = calculator.calculate_shipping(order_id)
 
             print(f"Order ID: {order_id}")
