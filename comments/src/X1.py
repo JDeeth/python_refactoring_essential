@@ -1,4 +1,4 @@
-class X1:
+class Maths:
 
     @staticmethod
     def sum_squares_of_range(lower_bound, upper_bound):
@@ -6,7 +6,7 @@ class X1:
 
         for i in range(lower_bound, upper_bound + 1):
             # Add square of each number in the range
-            accumulated_sum += X1.square(i)
+            accumulated_sum += Maths.square(i)
 
         return accumulated_sum
 
