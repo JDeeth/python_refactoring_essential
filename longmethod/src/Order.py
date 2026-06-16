@@ -8,6 +8,15 @@ class Customer:
 
     def is_loyal(self) -> bool:
         return self.loyal
+        
+    def calculateDiscount(self, subtotal: float):
+        discount = 0.0
+        if self.is_loyal():
+            discount = subtotal * 0.10
+        elif subtotal > 100:
+            discount = subtotal * 0.05
+
+        return discount
 
 
 @dataclass(frozen=True)
@@ -34,7 +43,7 @@ class Order:
 
         subtotal = self.calculateSubtotal()
 
-        discount = self.calculateDiscount(subtotal)
+        discount = self.customer.calculateDiscount(subtotal)
 
         taxable_amount = subtotal - discount
         tax = self.calculateTax(taxable_amount)
@@ -51,15 +60,6 @@ class Order:
 
     def calculateSubtotal(self):
         return sum(item.price * item.quantity for item in self.items)
-
-    def calculateDiscount(self, subtotal: float):
-        discount = 0.0
-        if self.customer.is_loyal():
-            discount = subtotal * 0.10
-        elif subtotal > 100:
-            discount = subtotal * 0.05
-
-        return discount
 
     def calculateTax(self, taxable_amount):
         return taxable_amount * 0.20
