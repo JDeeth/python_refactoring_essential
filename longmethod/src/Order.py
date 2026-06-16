@@ -56,7 +56,7 @@ class Order:
     def calculateSubtotal(self):
         return sum(item.price * item.quantity for item in self.items)
 
-    def calculateDiscount(self, subtotal):
+    def calculateDiscount(self, subtotal: float):
         # Discount rules
         discount = 0.0
         if self.customer.is_loyal():
