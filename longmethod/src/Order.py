@@ -6,12 +6,9 @@ from typing import List
 class Customer:
     loyal: bool
 
-    def is_loyal(self) -> bool:
-        return self.loyal
-        
     def calculateDiscount(self, subtotal: float):
         discount = 0.0
-        if self.is_loyal():
+        if self.loyal:
             discount = subtotal * 0.10
         elif subtotal > 100:
             discount = subtotal * 0.05
